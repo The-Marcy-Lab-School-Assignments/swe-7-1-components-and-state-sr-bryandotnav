@@ -10,20 +10,22 @@ What is a React component, and what is JSX? Explain how JSX differs from plain H
 
 **Your answer:**
 
-A react component is a js function that is self contained and reusable for user interface. JSX is the syntax that lets you write a hybrid of HTML and JS mixed together, JSX differs from HTML as the class attributes are different, the self closing tags are required and you do JS expresssions inline.
+A react component is a js function that is self contained and reusable for user interface. JSX is the syntax that lets you write an HTML-like markup inside a js file and under the hood JSX gets transpiled into standard `React.createElement()` function calls. Some of the differences include attribute naming; the attributes use camelCase rather than standard HTML syntax and you can embed any javascript expression directly inside curly braces
 
 EX:
-function Greeting({name}) {
-const isLoggedIn = true;
 
-return(
+```jsx
+function Greeting({ name }) {
+  const isLoggedIn = true;
 
-  <div className="card">
-    <h1>Hello, {name}!</h1>
-    {isLoggedIn && <p>Welcome back.</p>}
-  </div>  
+  return (
+    <div className="card">
+      <h1>Hello, {name}!</h1>
+      {isLoggedIn && <p>Welcome back.</p>}
+    </div>
   );
-  }
+}
+```
 
 ## Question 2 — The Build Step and Vite
 
@@ -31,7 +33,7 @@ A browser cannot run a `.jsx` file directly. Why not? Explain the role of a buil
 
 **Your answer:**
 
-A browser cannot run a jsx file directly because browsers only run HTML, CSS and JS, JSX needs to be transformed back into plain javascript in a way the browser understands and that is use through a tool called babel
+A browser cannot run a JSX file directly because browsers only natively understand standard javascript, HTML and CSS. JSX is a non standard syntax which means that browsers will throw a syntax error if you try and execute a .jsx file directly. The role of a build step is to automate the process of preparing raw source code for production. It uses tools like esbuild or babel to compile JSX into plain `React.createElement()` function calls, and compiling JSX basically means to take code written in one format like JSX in this instance and translating it into another format that the target environment can actually execute.
 
 ## Question 3 — useState
 
